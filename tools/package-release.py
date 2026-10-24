@@ -10,9 +10,9 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-COMMON = ['README.md', 'README.ru.md', 'LICENSE', 'NOTICE', 'gtnh-updater.example.json']
+COMMON = ['README.md', 'README.ru.md', 'CHANGELOG.md', 'LICENSE', 'NOTICE', 'gtnh-updater.example.json']
 SOURCE = ['.gitignore', '.gitattributes', 'gtnh_updater.py', 'Update-GTNH.sh', 'Launch-GTNHUpdater.sh',
-          'Update-GTNH.cmd', 'Launch-GTNHUpdater.bat', 'CONTRIBUTING.md', 'CHANGELOG.md', 'SECURITY.md',
+          'Update-GTNH.cmd', 'Launch-GTNHUpdater.bat', 'CONTRIBUTING.md', 'SECURITY.md',
           '.github/ISSUE_TEMPLATE/bug_report.yml',
           'lib/__init__.py', 'lib/pack.py', 'lib/cacert.pem',
           'tests/test_updater.py', 'tests/test_packaging.py',
