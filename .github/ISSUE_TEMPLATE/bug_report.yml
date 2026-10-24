@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a problem with the GTNH updater or installer.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Reproduce on a disposable copy. Do not attach accounts.json, tokens, personal
+        profiles, game worlds or VM credentials. This tracker is for the updater;
+        gameplay/modpack bugs belong to the GTNH project.
+  - type: input
+    id: version
+    attributes:
+      label: Updater version
+      placeholder: "0.1.0; packaged executable or source"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system
+      placeholder: "Windows 11 x64 / Debian 12 x64"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Command and reproduction steps
+      description: Include target, channel/version and custom-mod settings; redact private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Redacted error output
+      render: text

@@ -1,0 +1,9 @@
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf whitespace=-blank-at-eof
+*.pem text eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.class binary
+# Preserve third-party notices byte for byte, including upstream whitespace.
+LICENSES/** -text -whitespace

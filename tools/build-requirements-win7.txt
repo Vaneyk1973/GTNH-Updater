@@ -1,0 +1,9 @@
+pyinstaller==5.13.2
+pyinstaller-hooks-contrib==2024.10
+packaging==24.2
+altgraph==0.17.5
+setuptools==75.3.4
+pefile==2023.2.7
+pywin32-ctypes==0.2.2
+importlib-metadata==8.5.0
+zipp==3.20.2

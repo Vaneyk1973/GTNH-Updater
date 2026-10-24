@@ -1,0 +1,29 @@
+GTNH Updater — cross-platform implementation
+
+Original project: GTNH Updater by HELLSANGEL19
+Original repository: https://github.com/HELLSANGEL19/GTNH-Updater
+Reference commit: 8be03f102a2e7c86b7b6e53f5dabfbfdbcb7bdc0
+Original LICENSE Git blob: f7fdd6d8340c1f47f0c1bbefc22d25a4512e1762
+
+The cross-platform implementation was rewritten after reviewing the original project.
+The original MIT license and copyright notice are retained in LICENSE.
+New contributions in this distribution are also provided under the MIT license.
+
+This is an independent community project. It is not an official release of the
+original author, the GT New Horizons team, or Mojang/Microsoft.
+
+No Minecraft binaries, mod JARs, modpack archives, or personal instance data are
+included in this source distribution. Downloads are obtained from upstream.
+
+lib/cacert.pem is the Mozilla CA store converted by curl, dated 2026-10-20,
+licensed under MPL 2.0 (LICENSES/MPL-2.0.txt). Unmodified source is included.
+Source: https://curl.se/docs/caextract.html
+
+Bundled runtime builds additionally include CPython (PSF and third-party notices),
+OpenSSL, and the PyInstaller bootloader (GPL with the application distribution
+exception). Linux builds also include libffi, liblzma, bzip2 and zlib; their Debian
+copyright/license files are supplied in LICENSES. These components retain their
+own licenses. The MIT license applies to the updater's source code.
+Windows builds also contain Microsoft runtime components distributed with CPython;
+their terms are included in LICENSES/Python-*-Windows-runtime.txt. Those components
+are not relicensed under MIT.

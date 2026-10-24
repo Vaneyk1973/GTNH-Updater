@@ -1,0 +1,12 @@
+{
+  "ServerPath": "/path/to/gtnh-server",
+  "ClientInstancePath": "/path/to/PrismLauncher/instances/GTNH/.minecraft",
+  "DefaultChannel": "daily",
+  "JavaVersion": "java17",
+  "BackupDir": "/path/to/gtnh-backups",
+  "CustomServerMods": [],
+  "CustomClientMods": [],
+  "OverrideServerMods": [],
+  "OverrideClientMods": [],
+  "ConfigPatches": []
+}
