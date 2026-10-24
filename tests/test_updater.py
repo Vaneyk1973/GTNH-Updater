@@ -233,7 +233,9 @@ class UpdaterTests(unittest.TestCase):
             executable=os.environ.get('GTNH_TEST_JAVA') or shutil.which('java')
             if not executable:
                 self.skipTest('Set GTNH_TEST_JAVA to a Java executable for the process-safety test')
-            command=[str(executable),'-cp',str(REPO/'tests'),'GuardSleep',str(self.instance)]
+            alias = self.base/'guard-path-alias'
+            alias.mkdir()
+            command=[str(executable),'-cp',str(REPO/'tests'),'GuardSleep',str(alias/'..'/self.instance.name)]
         else:
             executable=self.base/'java'
             shutil.copy2('/usr/bin/sleep',executable)

@@ -6,6 +6,8 @@ First public cross-platform release, replacing the legacy PowerShell implementat
 
 * Update GTNH clients and servers to the same daily/stable or exact release.
 * Preview changes and validate official archives before replacing files.
+* Detect running Windows Java instances through canonical paths, including short
+  8.3 names, junctions and dot segments.
 * Full backups including hidden files and worlds; managed-file rollback includes
   Prism metadata/libraries and supports recovery after interruption.
 * Portable clean-install with official GTNH, Prism Launcher and Temurin downloads.

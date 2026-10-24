@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Pack validation and configuration; Python 3.8+ standard library only."""
+import ctypes
 import datetime as dt
 import hashlib
 import html
@@ -114,6 +115,28 @@ def installed(path):
     return 'unknown'
 
 
+def windows_command_uses(command, root):
+    count = ctypes.c_int()
+    parse = ctypes.windll.shell32.CommandLineToArgvW
+    parse.argtypes = [ctypes.c_wchar_p, ctypes.POINTER(ctypes.c_int)]
+    parse.restype = ctypes.POINTER(ctypes.c_wchar_p)
+    arguments = parse(command, ctypes.byref(count))
+    if not arguments:
+        fail('Cannot parse a running Java command line')
+    try:
+        # Resolve short names, junctions and dot segments before comparing paths.
+        for index in range(count.value):
+            for value in arguments[index].split('=', 1)[-1].split(';'):
+                if Path(value).is_absolute() and inside(value, root):
+                    return True
+        return False
+    finally:
+        free = ctypes.windll.kernel32.LocalFree
+        free.argtypes = [ctypes.c_void_p]
+        free.restype = ctypes.c_void_p
+        free(arguments)
+
+
 def preflight(root, target, operation='update'):
     root = resolve_path(root)
     game = root / '.minecraft' if target == 'client' else root
@@ -133,7 +156,8 @@ def preflight(root, target, operation='update'):
             pid, _, command = line.partition('\t')
             normalized = command.replace('/', '\\').lower()
             jar = re.search(r'-jar\s+"?([^"\s]+)', command)
-            if display(root).lower() in normalized or not command or (jar and not Path(jar[1]).is_absolute()):
+            if (display(root).lower() in normalized or not command
+                    or (jar and not Path(jar[1]).is_absolute()) or windows_command_uses(command, root)):
                 fail(f'Java process {pid} may be using {root}; stop the game/server first')
         return
     for process in Path('/proc').glob('[0-9]*'):
