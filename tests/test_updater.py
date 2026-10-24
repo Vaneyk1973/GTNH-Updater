@@ -243,9 +243,10 @@ class UpdaterTests(unittest.TestCase):
             time.sleep(.2)
             self.assertIsNone(process.poll(),'Java test process did not start')
             before=tree(self.instance)
-            result=self.run_cli('update','--yes',ok=False)
-            self.assertIn('Java process',result.stderr)
-            self.assertEqual(tree(self.instance),before)
+            with self.subTest(command=command, canonical_root=str(self.instance.resolve())):
+                result=self.run_cli('update','--yes',ok=False)
+                self.assertIn('Java process',result.stderr)
+                self.assertEqual(tree(self.instance),before)
         finally:
             if os.name == 'nt':
                 subprocess.run(['taskkill','/PID',str(process.pid),'/T','/F'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)

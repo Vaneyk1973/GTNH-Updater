@@ -65,8 +65,12 @@ def package(kind, binary, output):
         (stage/'build-info.json').write_text(json.dumps(info, indent=2)+'\n', encoding='utf-8')
         archive = output/(name+('.tar.gz' if kind == 'linux' else '.zip'))
         if kind == 'linux':
+            def executable_modes(member):
+                if member.name == name+'/gtnh-updater' or member.name.endswith('.sh'):
+                    member.mode = 0o755
+                return member
             with tarfile.open(archive, 'w:gz') as target:
-                target.add(stage, arcname=name)
+                target.add(stage, arcname=name, filter=executable_modes)
         else:
             with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as target:
                 for file in sorted(stage.rglob('*')):
